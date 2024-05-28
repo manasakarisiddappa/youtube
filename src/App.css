@@ -1,3 +1,39 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+.shimmer-card {
+  width: 300px;
+  border-radius: 8px;
+  background-color: #f0f0f0;
+  padding: 16px;
+  margin-bottom: 16px;
+  height: 250px;
+  margin: 16px;
+}
+
+.shimmer-header {
+  height: 150px;
+  width: 100%;
+  border-radius: 4px;
+  background-color: #ccc;
+  margin-bottom: 12px;
+  animation: shimmer-animation 1s infinite linear;
+}
+
+.shimmer-content {
+  height: 12px;
+  width: 100%;
+  border-radius: 4px;
+  background-color: #ccc;
+  margin-bottom: 8px;
+  animation: shimmer-animation 1s infinite linear;
+}
+
+@keyframes shimmer-animation {
+  0% {
+    background-color: #ccc;
+  }
+  50% {
+    background-color: #f0f0f0;
+  }
+  100% {
+    background-color: #ccc;
+  }
+}

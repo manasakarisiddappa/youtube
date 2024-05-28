@@ -1,16 +1,12 @@
 import React from "react";
+import { youtubeButtons } from "../utils/constants";
 import Button from "./Button";
-
 const ButtonList = () => {
   return (
-    <div className="flex">
-      <Button name="All" />
-      <Button name="Gaming" />
-      <Button name="Songs" />
-      <Button name="Live" />
-      <Button name="Cricket" />
-      <Button name="News" />
-      <Button name="Cooking" />
+    <div className="flex-col sm:flex sm:flex-row  ">
+      {youtubeButtons.map((button, index) => {
+        return <Button key={index} name={button} />;
+      })}
     </div>
   );
 };

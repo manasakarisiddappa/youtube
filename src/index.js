@@ -1,17 +1,48 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React, { Suspense, lazy } from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import { createBrowserRouter } from "react-router-dom";
+import Body from "./components/Body";
+import MainContainer from "./components/MainContainer";
+import Error from "./components/Error";
+import Shimmer from "./components/Shimmer";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const Search = lazy(() => import("./components/Search"));
+const WatchCard = lazy(() => import("./components/WatchCard"));
+export const appRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <Body />,
+    children: [
+      {
+        path: "/watch",
+        element: (
+          <Suspense fallback={<Shimmer />}>
+            <WatchCard />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/search",
+        element: (
+          <Suspense fallback={<Shimmer />}>
+            <Search />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/",
+        element: <MainContainer />,
+      },
+    ],
+    errorElement: <Error />,
+  },
+]);
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

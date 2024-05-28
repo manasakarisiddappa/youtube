@@ -1,9 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
-import appSlice from "./appSlice";
-
+import appReducer from "./appSlice";
+import cacheReducer from "./searchSlice";
+import chatReducer from "./chatSlice";
+import themeReducer from "./themeSlice";
+import videoReducer from "./videoSlice";
 const store = configureStore({
   reducer: {
-    app: appSlice,
+    app: appReducer,
+    cacheResult: cacheReducer,
+    chat: chatReducer,
+    theme: themeReducer,
+    video: videoReducer,
   },
 });
 
